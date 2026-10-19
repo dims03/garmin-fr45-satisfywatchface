@@ -1,0 +1,250 @@
+[ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 1; @symbol_usingdef<0> = [Toybox,1,6,12]; @symbol_usingdef<1> = [Activity,1,13,21]; ]
+using Toybox.Activity;
+[ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 2; @symbol_usingdef<0> = [Toybox,2,6,12]; @symbol_usingdef<1> = [ActivityMonitor,2,13,28]; ]
+using Toybox.ActivityMonitor;
+[ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 6; @symbol_classdef = [HeartRateReader,6,6,21]; ]
+class HeartRateReader {
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 6; ]
+    static
+    <init> {
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 7; @position = 8; @symbol_vardef = [isHistory,7,8,17]; ]
+    var isHistory = false;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 9; @symbol_functiondef = [initialize,9,13,23]; ]
+    function initialize() as Void {
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 11; @symbol_functiondef = [currentRate,11,13,24]; ]
+    function currentRate() {
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_11_27_13_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 12 8 ]
+        symbol [ Activity %tmp.1 12 15 23 ];
+        %tmp.1 = getm $.Toybox.Activity;
+        symbol [ getActivityInfo %tmp.2 12 24 39 ];
+        %tmp.2 = getv function %tmp.1 :getActivityInfo;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        symbol [ currentHeartRate %tmp.4 12 42 58 ];
+        %tmp.4 = getv %tmp.3 :currentHeartRate;
+        ret %tmp.4;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_11_27_13_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 15; @symbol_functiondef = [history,15,13,20]; ]
+    function history() {
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_15_23_20_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 16 8 ]
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_8_18_8_if_stmt:
+        symbol [ ActivityMonitor %tmp.1 16 12 27 ];
+        %tmp.1 = getm $.Toybox.ActivityMonitor;
+        %tmp.3 = const :getHeartRateHistory;
+        symbol [ getHeartRateHistory %tmp.3 16 33 52 const ];
+        %tmp.4 = canhazplz %tmp.1 %tmp.3;
+        bf %tmp.4 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_8_18_8_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_8_18_8_if_true:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_54_18_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 17 12 ]
+        symbol [ ActivityMonitor %tmp.5 17 19 34 ];
+        %tmp.5 = getm $.Toybox.ActivityMonitor;
+        symbol [ getHeartRateHistory %tmp.6 17 35 54 ];
+        %tmp.6 = getv function %tmp.5 :getHeartRateHistory;
+        %tmp.7 = 10;
+        %tmp.8 = true;
+        %tmp.9 = invoke %tmp.5 %tmp.6(%tmp.7, %tmp.8);
+        ret %tmp.9;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_54_18_8_stop:
+        goto @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_8_18_8_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_16_8_18_8_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 19 8 ]
+        %tmp.10 = null;
+        ret %tmp.10;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_15_23_20_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 22; @symbol_functiondef = [validRate,22,13,22]; @symbol_param<0> = [rate,22,23,27]; ]
+    function validRate(rate) {
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_22_29_25_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 23 8 ]
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_15_24_39_begin:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_15_23_38_begin:
+        %tmp.1 = lgetv %rate;
+        symbol [ rate %tmp.1 23 15 19 ];
+        %tmp.2 = null;
+        %tmp.3 = ne %tmp.1 %tmp.2;
+        %tmp.4 = dup %tmp.3;
+        bf %tmp.4 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_31_23_38_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_31_23_38_true:
+        %tmp.5 = lgetv %rate;
+        symbol [ rate %tmp.5 23 31 35 ];
+        %tmp.6 = as %tmp.5 { (!Null) };
+        %tmp.7 = 0;
+        %tmp.8 = gt %tmp.6 %tmp.7;
+        %tmp.9 = and %tmp.3 %tmp.8;
+        push %tmp.9;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_31_23_38_end:
+        %tmp.10 = phi [%tmp.4 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_15_23_38_begin] [%tmp.9 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_31_23_38_true] [%tmp.10 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_31_23_38_end];
+        %tmp.11 = dup %tmp.10;
+        bf %tmp.11 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_24_15_24_39_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_24_15_24_39_true:
+        %tmp.12 = lgetv %rate;
+        symbol [ rate %tmp.12 24 15 19 ];
+        %tmp.13 = as %tmp.12 { (!Null) };
+        symbol [ ActivityMonitor %tmp.14 24 23 38 ];
+        %tmp.14 = getm $.Toybox.ActivityMonitor;
+        symbol [ INVALID_HR_SAMPLE %tmp.15 24 39 56 ];
+        %tmp.15 = getv %tmp.14 :INVALID_HR_SAMPLE;
+        %tmp.16 = ne %tmp.13 %tmp.15;
+        %tmp.17 = and %tmp.10 %tmp.16;
+        push %tmp.17;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_24_15_24_39_end:
+        %tmp.18 = phi [%tmp.11 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_23_15_24_39_begin] [%tmp.17 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_24_15_24_39_true] [%tmp.18 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_24_15_24_39_end];
+        ret %tmp.18;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_22_29_25_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 27; @symbol_functiondef = [read,27,13,17]; ]
+    function read() {
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_27_20_46_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 28 8 ]
+        %tmp.1 = false;
+        symbol [ isHistory ? 28 8 17 ];
+        putv self :isHistory %tmp.1;
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 29 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_27_20_46_4_start" "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_27_20_46_4_stop" ]
+        %rate.1 = local;
+        symbol [ rate %rate.1 29 12 16 ];
+        %tmp.2 = self;
+        symbol [ currentRate %tmp.3 29 19 30 ];
+        %tmp.3 = getv function %tmp.2 :currentRate;
+        %tmp.4 = invoke %tmp.2 %tmp.3();
+        lputv %rate.1 %tmp.4;
+        symbol [ rate %rate.1 29 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 30 8 ]
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_8_30_44_if_stmt:
+        %tmp.5 = self;
+        symbol [ validRate %tmp.6 30 12 21 ];
+        %tmp.6 = getv function %tmp.5 :validRate;
+        %tmp.7 = lgetv %rate.1;
+        symbol [ rate %tmp.7 30 22 26 ];
+        %tmp.8 = invoke %tmp.5 %tmp.6(%tmp.7);
+        bf %tmp.8 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_8_30_44_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_8_30_44_if_true:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_29_30_44_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 30 31 ]
+        %tmp.9 = lgetv %rate.1;
+        symbol [ rate %tmp.9 30 38 42 ];
+        ret %tmp.9;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_29_30_44_stop:
+        goto @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_8_30_44_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_30_8_30_44_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 32 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_27_20_46_4_start" "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_27_20_46_4_stop" ]
+        %iterator.2 = local;
+        symbol [ iterator %iterator.2 32 12 20 ];
+        %tmp.10 = self;
+        symbol [ history %tmp.11 32 23 30 ];
+        %tmp.11 = getv function %tmp.10 :history;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        lputv %iterator.2 %tmp.12;
+        symbol [ iterator %iterator.2 32 12 20 ];
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 33 8 ]
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_8_33_45_if_stmt:
+        %tmp.13 = lgetv %iterator.2;
+        symbol [ iterator %tmp.13 33 12 20 ];
+        %tmp.14 = null;
+        %tmp.15 = eq %tmp.13 %tmp.14;
+        bf %tmp.15 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_8_33_45_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_8_33_45_if_true:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_30_33_45_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 33 32 ]
+        %tmp.16 = null;
+        ret %tmp.16;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_30_33_45_stop:
+        goto @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_8_33_45_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_33_8_33_45_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 37 8 ]
+        for @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_test @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_incr @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_init:
+        [ "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_begin" "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_end" ]
+        %count.3 = local;
+        symbol [ count %count.3 37 17 22 ];
+        %tmp.17 = 0;
+        lputv %count.3 %tmp.17;
+        symbol [ count %count.3 37 17 22 ];
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_test:
+        %tmp.18 = lgetv %count.3;
+        symbol [ count %tmp.18 37 28 33 ];
+        %tmp.19 = 10;
+        %tmp.20 = lt %tmp.18 %tmp.19;
+        bf %tmp.20 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_begin:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_52_44_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 38 12 ]
+        [ "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_52_44_8_start" "D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_52_44_8_stop" ]
+        %sample.4 = local;
+        symbol [ sample %sample.4 38 16 22 ];
+        %tmp.21 = lgetv %iterator.2;
+        symbol [ iterator %tmp.21 38 25 33 ];
+        symbol [ next %tmp.22 38 34 38 ];
+        %tmp.22 = getv function %tmp.21 :next;
+        %tmp.23 = invoke %tmp.21 %tmp.22();
+        lputv %sample.4 %tmp.23;
+        symbol [ sample %sample.4 38 16 22 ];
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 39 12 ]
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_12_39_41_if_stmt:
+        %tmp.24 = lgetv %sample.4;
+        symbol [ sample %tmp.24 39 16 22 ];
+        %tmp.25 = null;
+        %tmp.26 = eq %tmp.24 %tmp.25;
+        bf %tmp.26 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_12_39_41_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_12_39_41_if_true:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_32_39_41_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 39 34 ]
+        goto break @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_32_39_41_stop:
+        goto @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_12_39_41_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_39_12_39_41_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 40 12 ]
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_12_43_12_if_stmt:
+        %tmp.27 = self;
+        symbol [ validRate %tmp.28 40 16 25 ];
+        %tmp.28 = getv function %tmp.27 :validRate;
+        %tmp.29 = lgetv %sample.4;
+        symbol [ sample %tmp.29 40 26 32 ];
+        symbol [ heartRate %tmp.30 40 33 42 ];
+        %tmp.30 = getv %tmp.29 :heartRate;
+        %tmp.31 = invoke %tmp.27 %tmp.28(%tmp.30);
+        bf %tmp.31 @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_12_43_12_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_12_43_12_if_true:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_45_43_12_start:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 41 16 ]
+        %tmp.32 = true;
+        symbol [ isHistory ? 41 16 25 ];
+        putv self :isHistory %tmp.32;
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 42 16 ]
+        %tmp.33 = lgetv %sample.4;
+        symbol [ sample %tmp.33 42 23 29 ];
+        symbol [ heartRate %tmp.34 42 30 39 ];
+        %tmp.34 = getv %tmp.33 :heartRate;
+        ret %tmp.34;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_45_43_12_stop:
+        goto @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_12_43_12_if_end;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_40_12_43_12_if_end:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_52_44_8_stop:
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_incr:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 37 ]
+        %tmp.35 = lgetv %count.3;
+        symbol [ count %tmp.35 37 40 45 ];
+        %tmp.36 = 1;
+        %tmp.37 = add %tmp.35 %tmp.36;
+        lputv %count.3 %tmp.37;
+        symbol [ count %count.3 37 40 45 ];
+        goto @D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_test;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_37_8_44_8_for_end:
+[ "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc" 45 8 ]
+        %tmp.38 = null;
+        ret %tmp.38;
+D__laragon_www_satisfy_fr45_source_HeartRateReader_mc_27_20_46_4_stop:
+    }
+}
+[ @file = "D:\laragon\www\satisfy-fr45\source\HeartRateReader.mc"; @line = 1; ]
+<init> {
+}

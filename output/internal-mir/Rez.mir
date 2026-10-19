@@ -1,0 +1,47 @@
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [Lang,1,14,18]; ]
+import Toybox.Lang;
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 2; @symbol_usingdef<0> = [Toybox,2,6,12]; @symbol_usingdef<1> = [WatchUi,2,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 3; @symbol_usingdef<0> = [Toybox,3,6,12]; @symbol_usingdef<1> = [WatchUi,3,13,20]; @symbol_usingAlias = [Ui,3,24,26]; ]
+using Toybox.WatchUi as :Ui;
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 4; @symbol_usingdef<0> = [Toybox,4,6,12]; @symbol_usingdef<1> = [Graphics,4,13,21]; ]
+using Toybox.Graphics;
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Graphics,5,13,21]; @symbol_usingAlias = [Gfx,5,25,28]; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 7; @symbol_moduledef = [Rez,7,7,10]; ]
+module Rez {
+    [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 7; ]
+    <init> {
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 8; @symbol_moduledef = [Drawables,8,11,20]; ]
+    module Drawables {
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 8; ]
+        <init> {
+        }
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 9; @position = 27; initialized = true; @symbol_vardef = [LauncherIcon,9,27,39]; @symbol_type<0> = [ResourceId,9,43,53]; ]
+        var LauncherIcon as ResourceId;
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 12; @symbol_moduledef = [Fonts,12,11,16]; ]
+    module Fonts {
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 12; ]
+        <init> {
+        }
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 13; @position = 27; initialized = true; @symbol_vardef = [TimeFont,13,27,35]; @symbol_type<0> = [ResourceId,13,39,49]; ]
+        var TimeFont as ResourceId;
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 14; @position = 27; initialized = true; @symbol_vardef = [SmallFont,14,27,36]; @symbol_type<0> = [ResourceId,14,40,50]; ]
+        var SmallFont as ResourceId;
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 15; @position = 27; initialized = true; @symbol_vardef = [NameFont,15,27,35]; @symbol_type<0> = [ResourceId,15,39,49]; ]
+        var NameFont as ResourceId;
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 18; @symbol_moduledef = [Strings,18,11,18]; ]
+    module Strings {
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 18; ]
+        <init> {
+        }
+        [ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 19; @position = 27; initialized = true; @symbol_vardef = [AppName,19,27,34]; @symbol_type<0> = [ResourceId,19,38,48]; ]
+        var AppName as ResourceId;
+    }
+}
+[ @file = "D:\laragon\www\satisfy-fr45\output\gen\006-B3282-00\source\Rez.mcgen"; @line = 1; ]
+<init> {
+}

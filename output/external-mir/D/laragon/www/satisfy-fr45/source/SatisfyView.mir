@@ -1,0 +1,1409 @@
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 1; @symbol_usingdef<0> = [Toybox,1,6,12]; @symbol_usingdef<1> = [ActivityMonitor,1,13,28]; ]
+using Toybox.ActivityMonitor;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 2; @symbol_usingdef<0> = [Toybox,2,6,12]; @symbol_usingdef<1> = [Graphics,2,13,21]; ]
+using Toybox.Graphics;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 3; @symbol_usingdef<0> = [Toybox,3,6,12]; @symbol_usingdef<1> = [Math,3,13,17]; ]
+using Toybox.Math;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 4; @symbol_usingdef<0> = [Toybox,4,6,12]; @symbol_usingdef<1> = [System,4,13,19]; ]
+using Toybox.System;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Time,5,13,17]; ]
+using Toybox.Time;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 6; @symbol_usingdef<0> = [Toybox,6,6,12]; @symbol_usingdef<1> = [Time,6,13,17]; @symbol_usingdef<2> = [Gregorian,6,18,27]; ]
+using Toybox.Time.Gregorian;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 7; @symbol_usingdef<0> = [Toybox,7,6,12]; @symbol_usingdef<1> = [WatchUi,7,13,20]; ]
+using Toybox.WatchUi;
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 11; @symbol_classdef = [SatisfyView,11,6,17]; @symbol_extends<0> = [WatchUi,11,26,33]; @symbol_extends<1> = [WatchFace,11,34,43]; ]
+class SatisfyView extends WatchUi.WatchFace {
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 11; ]
+    <init> {
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 11; ]
+    static
+    <init> {
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 12; @position = 8; @symbol_vardef = [_timeFont,12,8,17]; ]
+    var _timeFont;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 13; @position = 8; @symbol_vardef = [_smallFont,13,8,18]; ]
+    var _smallFont;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 14; @position = 8; @symbol_vardef = [_nameFont,14,8,17]; ]
+    var _nameFont;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 15; @position = 8; @symbol_vardef = [_steps,15,8,14]; ]
+    var _steps = null;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 16; @position = 8; @symbol_vardef = [_goal,16,8,13]; ]
+    var _goal = null;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 17; @position = 8; @symbol_vardef = [_distance,17,8,17]; ]
+    var _distance = null;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 18; @position = 8; @symbol_vardef = [_calories,18,8,17]; ]
+    var _calories = null;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 19; @position = 8; @symbol_vardef = [_heartRate,19,8,18]; ]
+    var _heartRate = null;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 20; @position = 8; @symbol_vardef = [_hrReader,20,8,17]; ]
+    var _hrReader;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 21; @position = 8; @symbol_vardef = [_lastHeartRead,21,8,22]; ]
+    var _lastHeartRead = -1;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 22; @position = 8; @symbol_vardef = [_lastRead,22,8,17]; ]
+    var _lastRead = -1;
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 24; @symbol_functiondef = [initialize,24,13,23]; ]
+    function initialize() as Void {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_24_26_27_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 25 8 ]
+        symbol [ WatchFace %tmp.2 25 8 17 ];
+        %tmp.2 = getv ? :WatchFace;
+        symbol [ initialize %tmp.3 25 18 28 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 26 8 ]
+        symbol [ HeartRateReader %tmp.7 26 24 39 ];
+        %tmp.7 = getv ? :HeartRateReader;
+        %tmp.4 = newc %tmp.7 ();
+        symbol [ _hrReader ? 26 8 17 ];
+        putv self :_hrReader %tmp.4;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_24_26_27_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 29; @symbol_functiondef = [onLayout,29,13,21]; @symbol_param<0> = [dc,29,22,24]; ]
+    function onLayout(dc) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_29_26_33_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 30 8 ]
+        symbol [ WatchUi %tmp.1 30 20 27 ];
+        %tmp.1 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.2 30 28 40 ];
+        %tmp.2 = getv function %tmp.1 :loadResource;
+        symbol [ Rez %tmp.4 30 41 44 ];
+        %tmp.4 = getv ? :Rez;
+        symbol [ Fonts %tmp.5 30 45 50 ];
+        %tmp.5 = getv %tmp.4 :Fonts;
+        symbol [ TimeFont %tmp.6 30 51 59 ];
+        %tmp.6 = getv %tmp.5 :TimeFont;
+        %tmp.7 = invoke %tmp.1 %tmp.2(%tmp.6);
+        symbol [ _timeFont ? 30 8 17 ];
+        putv self :_timeFont %tmp.7;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 31 8 ]
+        symbol [ WatchUi %tmp.8 31 21 28 ];
+        %tmp.8 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.9 31 29 41 ];
+        %tmp.9 = getv function %tmp.8 :loadResource;
+        symbol [ Rez %tmp.11 31 42 45 ];
+        %tmp.11 = getv ? :Rez;
+        symbol [ Fonts %tmp.12 31 46 51 ];
+        %tmp.12 = getv %tmp.11 :Fonts;
+        symbol [ SmallFont %tmp.13 31 52 61 ];
+        %tmp.13 = getv %tmp.12 :SmallFont;
+        %tmp.14 = invoke %tmp.8 %tmp.9(%tmp.13);
+        symbol [ _smallFont ? 31 8 18 ];
+        putv self :_smallFont %tmp.14;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 32 8 ]
+        symbol [ WatchUi %tmp.15 32 20 27 ];
+        %tmp.15 = getm $.Toybox.WatchUi;
+        symbol [ loadResource %tmp.16 32 28 40 ];
+        %tmp.16 = getv function %tmp.15 :loadResource;
+        symbol [ Rez %tmp.18 32 41 44 ];
+        %tmp.18 = getv ? :Rez;
+        symbol [ Fonts %tmp.19 32 45 50 ];
+        %tmp.19 = getv %tmp.18 :Fonts;
+        symbol [ NameFont %tmp.20 32 51 59 ];
+        %tmp.20 = getv %tmp.19 :NameFont;
+        %tmp.21 = invoke %tmp.15 %tmp.16(%tmp.20);
+        symbol [ _nameFont ? 32 8 17 ];
+        putv self :_nameFont %tmp.21;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_29_26_33_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 35; @symbol_functiondef = [onShow,35,13,19]; ]
+    function onShow() {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_35_22_38_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 36 8 ]
+        %tmp.1 = -1;
+        symbol [ _lastRead ? 36 8 17 ];
+        putv self :_lastRead %tmp.1;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 37 8 ]
+        %tmp.2 = -1;
+        symbol [ _lastHeartRead ? 37 8 22 ];
+        putv self :_lastHeartRead %tmp.2;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_35_22_38_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 40; @symbol_functiondef = [onExitSleep,40,13,24]; ]
+    function onExitSleep() {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_40_27_43_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 41 8 ]
+        %tmp.1 = -1;
+        symbol [ _lastRead ? 41 8 17 ];
+        putv self :_lastRead %tmp.1;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 42 8 ]
+        %tmp.2 = -1;
+        symbol [ _lastHeartRead ? 42 8 22 ];
+        putv self :_lastHeartRead %tmp.2;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_40_27_43_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 45; @symbol_functiondef = [readMetrics,45,13,24]; @symbol_param<0> = [now,45,25,28]; ]
+    function readMetrics(now) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_45_30_62_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 48 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_stmt:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_12_48_82_begin:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_12_48_40_begin:
+        symbol [ _lastHeartRead %tmp.2 48 12 26 ];
+        %tmp.2 = getv ? :_lastHeartRead;
+        %tmp.3 = 0;
+        %tmp.4 = lt %tmp.2 %tmp.3;
+        bt %tmp.4 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_true;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_34_48_40_false:
+        %tmp.5 = lgetv %now;
+        symbol [ now %tmp.5 48 34 37 ];
+        symbol [ _lastHeartRead %tmp.7 48 40 54 ];
+        %tmp.7 = getv ? :_lastHeartRead;
+        %tmp.8 = lt %tmp.5 %tmp.7;
+        push %tmp.8;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_34_48_40_end:
+        %tmp.9 = phi [%tmp.4 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_12_48_40_begin] [%tmp.8 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_34_48_40_false] [%tmp.9 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_34_48_40_end];
+        bt %tmp.9 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_true;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_58_48_82_false:
+        %tmp.10 = lgetv %now;
+        symbol [ now %tmp.10 48 58 61 ];
+        symbol [ _lastHeartRead %tmp.12 48 64 78 ];
+        %tmp.12 = getv ? :_lastHeartRead;
+        %tmp.13 = sub %tmp.10 %tmp.12;
+        %tmp.14 = 5;
+        %tmp.15 = gte %tmp.13 %tmp.14;
+        push %tmp.15;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_58_48_82_end:
+        %tmp.16 = phi [%tmp.9 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_12_48_82_begin] [%tmp.15 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_58_48_82_false] [%tmp.16 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_58_48_82_end];
+        bf %tmp.16 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_85_51_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 49 12 ]
+        %tmp.17 = lgetv %now;
+        symbol [ now %tmp.17 49 29 32 ];
+        symbol [ _lastHeartRead ? 49 12 26 ];
+        putv self :_lastHeartRead %tmp.17;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 50 12 ]
+        symbol [ _hrReader %tmp.19 50 25 34 ];
+        %tmp.19 = getv ? :_hrReader;
+        symbol [ read %tmp.20 50 35 39 ];
+        %tmp.20 = getv function %tmp.19 :read;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        symbol [ _heartRate ? 50 12 22 ];
+        putv self :_heartRate %tmp.21;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_85_51_8_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_48_8_51_8_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 53 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_stmt:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_12_53_68_begin:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_12_53_37_begin:
+        symbol [ _lastRead %tmp.23 53 12 21 ];
+        %tmp.23 = getv ? :_lastRead;
+        %tmp.24 = 0;
+        %tmp.25 = gte %tmp.23 %tmp.24;
+        bf %tmp.25 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_30_53_37_true:
+        %tmp.26 = lgetv %now;
+        symbol [ now %tmp.26 53 30 33 ];
+        symbol [ _lastRead %tmp.28 53 37 46 ];
+        %tmp.28 = getv ? :_lastRead;
+        %tmp.29 = gte %tmp.26 %tmp.28;
+        push %tmp.29;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_30_53_37_end:
+        %tmp.30 = phi [%tmp.25 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_12_53_37_begin] [%tmp.29 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_30_53_37_true] [%tmp.30 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_30_53_37_end];
+        bf %tmp.30 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_50_53_68_true:
+        %tmp.31 = lgetv %now;
+        symbol [ now %tmp.31 53 50 53 ];
+        symbol [ _lastRead %tmp.33 53 56 65 ];
+        %tmp.33 = getv ? :_lastRead;
+        %tmp.34 = sub %tmp.31 %tmp.33;
+        %tmp.35 = 60;
+        %tmp.36 = lt %tmp.34 %tmp.35;
+        push %tmp.36;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_50_53_68_end:
+        %tmp.37 = phi [%tmp.30 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_12_53_68_begin] [%tmp.36 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_50_53_68_true] [%tmp.37 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_50_53_68_end];
+        bf %tmp.37 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_72_55_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 54 12 ]
+        ret ?;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_72_55_8_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_53_8_55_8_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 56 8 ]
+        %tmp.38 = lgetv %now;
+        symbol [ now %tmp.38 56 20 23 ];
+        symbol [ _lastRead ? 56 8 17 ];
+        putv self :_lastRead %tmp.38;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 57 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_45_30_62_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_45_30_62_4_stop" ]
+        %info.1 = local;
+        symbol [ info %info.1 57 12 16 ];
+        symbol [ ActivityMonitor %tmp.39 57 19 34 ];
+        %tmp.39 = getm $.Toybox.ActivityMonitor;
+        symbol [ getInfo %tmp.40 57 35 42 ];
+        %tmp.40 = getv function %tmp.39 :getInfo;
+        %tmp.41 = invoke %tmp.39 %tmp.40();
+        lputv %info.1 %tmp.41;
+        symbol [ info %info.1 57 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 58 8 ]
+        %tmp.42 = lgetv %info.1;
+        symbol [ info %tmp.42 58 17 21 ];
+        symbol [ steps %tmp.43 58 22 27 ];
+        %tmp.43 = getv %tmp.42 :steps;
+        symbol [ _steps ? 58 8 14 ];
+        putv self :_steps %tmp.43;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 59 8 ]
+        %tmp.44 = lgetv %info.1;
+        symbol [ info %tmp.44 59 16 20 ];
+        symbol [ stepGoal %tmp.45 59 21 29 ];
+        %tmp.45 = getv %tmp.44 :stepGoal;
+        symbol [ _goal ? 59 8 13 ];
+        putv self :_goal %tmp.45;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 60 8 ]
+        %tmp.46 = lgetv %info.1;
+        symbol [ info %tmp.46 60 20 24 ];
+        symbol [ distance %tmp.47 60 25 33 ];
+        %tmp.47 = getv %tmp.46 :distance;
+        symbol [ _distance ? 60 8 17 ];
+        putv self :_distance %tmp.47;
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 61 8 ]
+        %tmp.48 = lgetv %info.1;
+        symbol [ info %tmp.48 61 20 24 ];
+        symbol [ calories %tmp.49 61 25 33 ];
+        %tmp.49 = getv %tmp.48 :calories;
+        symbol [ _calories ? 61 8 17 ];
+        putv self :_calories %tmp.49;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_45_30_62_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 64; @symbol_functiondef = [numberText,64,13,23]; @symbol_param<0> = [value,64,24,29]; ]
+    function numberText(value) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_64_31_66_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 65 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_begin:
+        %tmp.1 = lgetv %value;
+        symbol [ value %tmp.1 65 15 20 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bf %tmp.3 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_else_false;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_true:
+        %tmp.4 = "--";
+        push %tmp.4;
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_else_false:
+        %tmp.5 = lgetv %value;
+        symbol [ value %tmp.5 65 38 43 ];
+        %tmp.6 = as %tmp.5 { (!Null) };
+        symbol [ format %tmp.7 65 44 50 ];
+        %tmp.7 = getv function %tmp.6 :format;
+        %tmp.8 = "%d";
+        %tmp.9 = invoke %tmp.6 %tmp.7(%tmp.8);
+        push %tmp.9;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_end:
+        %tmp.10 = phi [%tmp.3 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_begin] [%tmp.4 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_true] [%tmp.9 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_else_false] [%tmp.10 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_65_15_65_55_end];
+        ret %tmp.10;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_64_31_66_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 68; @symbol_functiondef = [drawText,68,13,21]; @symbol_param<0> = [dc,68,22,24]; @symbol_param<1> = [x,68,26,27]; @symbol_param<2> = [y,68,29,30]; @symbol_param<3> = [value,68,32,37]; @symbol_param<4> = [font,68,39,43]; ]
+    function drawText(dc, x, y, value, font) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_68_45_70_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 69 8 ]
+        %tmp.1 = lgetv %dc;
+        symbol [ dc %tmp.1 69 8 10 ];
+        symbol [ drawText %tmp.2 69 11 19 ];
+        %tmp.2 = getv function %tmp.1 :drawText;
+        %tmp.3 = lgetv %x;
+        symbol [ x %tmp.3 69 20 21 ];
+        %tmp.4 = lgetv %y;
+        symbol [ y %tmp.4 69 23 24 ];
+        %tmp.5 = lgetv %font;
+        symbol [ font %tmp.5 69 26 30 ];
+        %tmp.6 = lgetv %value;
+        symbol [ value %tmp.6 69 32 37 ];
+        symbol [ Graphics %tmp.7 69 39 47 ];
+        %tmp.7 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_LEFT %tmp.8 69 48 65 ];
+        %tmp.8 = getv %tmp.7 :TEXT_JUSTIFY_LEFT;
+        invoke %tmp.1 %tmp.2(%tmp.3, %tmp.4, %tmp.5, %tmp.6, %tmp.8);
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_68_45_70_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 72; @symbol_functiondef = [onUpdate,72,13,21]; @symbol_param<0> = [dc,72,22,24]; ]
+    function onUpdate(dc) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 73 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %now.1 = local;
+        symbol [ now %now.1 73 12 15 ];
+        symbol [ Time %tmp.1 73 18 22 ];
+        %tmp.1 = getm $.Toybox.Time;
+        symbol [ now %tmp.2 73 23 26 ];
+        %tmp.2 = getv function %tmp.1 :now;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %now.1 %tmp.3;
+        symbol [ now %now.1 73 12 15 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 74 8 ]
+        %tmp.4 = self;
+        symbol [ readMetrics %tmp.5 74 8 19 ];
+        %tmp.5 = getv function %tmp.4 :readMetrics;
+        %tmp.6 = lgetv %now.1;
+        symbol [ now %tmp.6 74 20 23 ];
+        symbol [ value %tmp.7 74 24 29 ];
+        %tmp.7 = getv function %tmp.6 :value;
+        %tmp.8 = invoke %tmp.6 %tmp.7();
+        invoke %tmp.4 %tmp.5(%tmp.8);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 75 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %clock.2 = local;
+        symbol [ clock %clock.2 75 12 17 ];
+        symbol [ System %tmp.9 75 20 26 ];
+        %tmp.9 = getm $.Toybox.System;
+        symbol [ getClockTime %tmp.10 75 27 39 ];
+        %tmp.10 = getv function %tmp.9 :getClockTime;
+        %tmp.11 = invoke %tmp.9 %tmp.10();
+        lputv %clock.2 %tmp.11;
+        symbol [ clock %clock.2 75 12 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 76 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %date.3 = local;
+        symbol [ date %date.3 76 12 16 ];
+        symbol [ Gregorian %tmp.12 76 19 28 ];
+        %tmp.12 = getm $.Toybox.Time.Gregorian;
+        symbol [ info %tmp.13 76 29 33 ];
+        %tmp.13 = getv function %tmp.12 :info;
+        %tmp.14 = lgetv %now.1;
+        symbol [ now %tmp.14 76 34 37 ];
+        symbol [ Time %tmp.15 76 39 43 ];
+        %tmp.15 = getm $.Toybox.Time;
+        symbol [ FORMAT_SHORT %tmp.16 76 44 56 ];
+        %tmp.16 = getv %tmp.15 :FORMAT_SHORT;
+        %tmp.17 = invoke %tmp.12 %tmp.13(%tmp.14, %tmp.16);
+        lputv %date.3 %tmp.17;
+        symbol [ date %date.3 76 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 77 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %days.4 = local;
+        symbol [ days %days.4 77 12 16 ];
+        %tmp.18 = newa 7;
+        %tmp.19 = "SUN";
+        %tmp.20 = dup %tmp.18;
+        %tmp.21 = aputv %tmp.20 0 %tmp.19;
+        %tmp.22 = "MON";
+        %tmp.23 = dup %tmp.21;
+        %tmp.24 = aputv %tmp.23 1 %tmp.22;
+        %tmp.25 = "TUE";
+        %tmp.26 = dup %tmp.24;
+        %tmp.27 = aputv %tmp.26 2 %tmp.25;
+        %tmp.28 = "WED";
+        %tmp.29 = dup %tmp.27;
+        %tmp.30 = aputv %tmp.29 3 %tmp.28;
+        %tmp.31 = "THU";
+        %tmp.32 = dup %tmp.30;
+        %tmp.33 = aputv %tmp.32 4 %tmp.31;
+        %tmp.34 = "FRI";
+        %tmp.35 = dup %tmp.33;
+        %tmp.36 = aputv %tmp.35 5 %tmp.34;
+        %tmp.37 = "SAT";
+        %tmp.38 = dup %tmp.36;
+        %tmp.39 = aputv %tmp.38 6 %tmp.37;
+        lputv %days.4 %tmp.39;
+        symbol [ days %days.4 77 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 78 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %hour.5 = local;
+        symbol [ hour %hour.5 78 12 16 ];
+        %tmp.40 = lgetv %clock.2;
+        symbol [ clock %tmp.40 78 19 24 ];
+        symbol [ hour %tmp.41 78 25 29 ];
+        %tmp.41 = getv %tmp.40 :hour;
+        lputv %hour.5 %tmp.41;
+        symbol [ hour %hour.5 78 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 79 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_8_82_8_if_stmt:
+        symbol [ System %tmp.42 79 13 19 ];
+        %tmp.42 = getm $.Toybox.System;
+        symbol [ getDeviceSettings %tmp.43 79 20 37 ];
+        %tmp.43 = getv function %tmp.42 :getDeviceSettings;
+        %tmp.44 = invoke %tmp.42 %tmp.43();
+        symbol [ is24Hour %tmp.45 79 40 48 ];
+        %tmp.45 = getv %tmp.44 :is24Hour;
+        %tmp.46 = not %tmp.45;
+        bf %tmp.46 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_8_82_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_8_82_8_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_50_82_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 80 12 ]
+        %tmp.47 = lgetv %hour.5;
+        symbol [ hour %tmp.47 80 19 23 ];
+        %tmp.48 = 12;
+        %tmp.49 = mod %tmp.47 %tmp.48;
+        lputv %hour.5 %tmp.49;
+        symbol [ hour %hour.5 80 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 81 12 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_12_81_40_if_stmt:
+        %tmp.50 = lgetv %hour.5;
+        symbol [ hour %tmp.50 81 16 20 ];
+        %tmp.51 = 0;
+        %tmp.52 = eq %tmp.50 %tmp.51;
+        bf %tmp.52 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_12_81_40_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_12_81_40_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_27_81_40_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 81 29 ]
+        %tmp.53 = 12;
+        lputv %hour.5 %tmp.53;
+        symbol [ hour %hour.5 81 29 33 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_27_81_40_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_12_81_40_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_81_12_81_40_if_end:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_50_82_8_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_8_82_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_79_8_82_8_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 84 8 ]
+        %tmp.54 = lgetv %dc;
+        symbol [ dc %tmp.54 84 8 10 ];
+        symbol [ setColor %tmp.55 84 11 19 ];
+        %tmp.55 = getv function %tmp.54 :setColor;
+        symbol [ Graphics %tmp.56 84 20 28 ];
+        %tmp.56 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.57 84 29 40 ];
+        %tmp.57 = getv %tmp.56 :COLOR_BLACK;
+        symbol [ Graphics %tmp.58 84 42 50 ];
+        %tmp.58 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.59 84 51 62 ];
+        %tmp.59 = getv %tmp.58 :COLOR_WHITE;
+        invoke %tmp.54 %tmp.55(%tmp.57, %tmp.59);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 85 8 ]
+        %tmp.60 = lgetv %dc;
+        symbol [ dc %tmp.60 85 8 10 ];
+        symbol [ clear %tmp.61 85 11 16 ];
+        %tmp.61 = getv function %tmp.60 :clear;
+        invoke %tmp.60 %tmp.61();
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 88 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %px.6 = local;
+        symbol [ px %px.6 88 12 14 ];
+        %tmp.62 = 35;
+        lputv %px.6 %tmp.62;
+        symbol [ px %px.6 88 12 14 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 89 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %py.7 = local;
+        symbol [ py %py.7 89 12 14 ];
+        %tmp.63 = 33;
+        lputv %py.7 %tmp.63;
+        symbol [ py %py.7 89 12 14 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 90 8 ]
+        for @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_test @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_incr @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_init:
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_begin" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_end" ]
+        %x.8 = local;
+        symbol [ x %x.8 90 17 18 ];
+        %tmp.64 = 36;
+        lputv %x.8 %tmp.64;
+        symbol [ x %x.8 90 17 18 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_test:
+        %tmp.65 = lgetv %x.8;
+        symbol [ x %tmp.65 90 25 26 ];
+        %tmp.66 = 173;
+        %tmp.67 = lte %tmp.65 %tmp.66;
+        bf %tmp.67 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_begin:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_43_96_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 91 12 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_43_96_8_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_43_96_8_stop" ]
+        %offset.9 = local;
+        symbol [ offset %offset.9 91 16 22 ];
+        %tmp.68 = lgetv %x.8;
+        symbol [ x %tmp.68 91 25 26 ];
+        %tmp.69 = 104;
+        %tmp.70 = sub %tmp.68 %tmp.69;
+        lputv %offset.9 %tmp.70;
+        symbol [ offset %offset.9 91 16 22 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 92 12 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_43_96_8_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_43_96_8_stop" ]
+        %y.10 = local;
+        symbol [ y %y.10 92 16 17 ];
+        %tmp.71 = 104;
+        symbol [ Math %tmp.72 92 27 31 ];
+        %tmp.72 = getm $.Toybox.Math;
+        symbol [ sqrt %tmp.73 92 32 36 ];
+        %tmp.73 = getv function %tmp.72 :sqrt;
+        %tmp.74 = 99;
+        %tmp.75 = 99;
+        %tmp.76 = mul %tmp.74 %tmp.75;
+        %tmp.77 = lgetv %offset.9;
+        symbol [ offset %tmp.77 92 47 53 ];
+        %tmp.78 = lgetv %offset.9;
+        symbol [ offset %tmp.78 92 56 62 ];
+        %tmp.79 = mul %tmp.77 %tmp.78;
+        %tmp.80 = sub %tmp.76 %tmp.79;
+        %tmp.81 = invoke %tmp.72 %tmp.73(%tmp.80);
+        %tmp.82 = sub %tmp.71 %tmp.81;
+        symbol [ toNumber %tmp.83 92 65 73 ];
+        %tmp.83 = getv function %tmp.82 :toNumber;
+        %tmp.84 = invoke %tmp.82 %tmp.83();
+        lputv %y.10 %tmp.84;
+        symbol [ y %y.10 92 16 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 93 12 ]
+        %tmp.85 = lgetv %dc;
+        symbol [ dc %tmp.85 93 12 14 ];
+        symbol [ drawLine %tmp.86 93 15 23 ];
+        %tmp.86 = getv function %tmp.85 :drawLine;
+        %tmp.87 = lgetv %px.6;
+        symbol [ px %tmp.87 93 24 26 ];
+        %tmp.88 = lgetv %py.7;
+        symbol [ py %tmp.88 93 28 30 ];
+        %tmp.89 = lgetv %x.8;
+        symbol [ x %tmp.89 93 32 33 ];
+        %tmp.90 = lgetv %y.10;
+        symbol [ y %tmp.90 93 35 36 ];
+        invoke %tmp.85 %tmp.86(%tmp.87, %tmp.88, %tmp.89, %tmp.90);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 94 12 ]
+        %tmp.91 = lgetv %x.8;
+        symbol [ x %tmp.91 94 17 18 ];
+        lputv %px.6 %tmp.91;
+        symbol [ px %px.6 94 12 14 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 95 12 ]
+        %tmp.92 = lgetv %y.10;
+        symbol [ y %tmp.92 95 17 18 ];
+        lputv %py.7 %tmp.92;
+        symbol [ py %py.7 95 12 14 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_43_96_8_stop:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_incr:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 90 ]
+        %tmp.93 = lgetv %x.8;
+        symbol [ x %tmp.93 90 35 36 ];
+        %tmp.94 = 1;
+        %tmp.95 = add %tmp.93 %tmp.94;
+        lputv %x.8 %tmp.95;
+        symbol [ x %x.8 90 35 36 ];
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_test;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_90_8_96_8_for_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 98 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %battery.11 = local;
+        symbol [ battery %battery.11 98 12 19 ];
+        symbol [ System %tmp.96 98 22 28 ];
+        %tmp.96 = getm $.Toybox.System;
+        symbol [ getSystemStats %tmp.97 98 29 43 ];
+        %tmp.97 = getv function %tmp.96 :getSystemStats;
+        %tmp.98 = invoke %tmp.96 %tmp.97();
+        symbol [ battery %tmp.99 98 46 53 ];
+        %tmp.99 = getv %tmp.98 :battery;
+        symbol [ toNumber %tmp.100 98 54 62 ];
+        %tmp.100 = getv function %tmp.99 :toNumber;
+        %tmp.101 = invoke %tmp.99 %tmp.100();
+        lputv %battery.11 %tmp.101;
+        symbol [ battery %battery.11 98 12 19 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 99 8 ]
+        %tmp.102 = lgetv %dc;
+        symbol [ dc %tmp.102 99 8 10 ];
+        symbol [ drawRectangle %tmp.103 99 11 24 ];
+        %tmp.103 = getv function %tmp.102 :drawRectangle;
+        %tmp.104 = 80;
+        %tmp.105 = 18;
+        %tmp.106 = 13;
+        %tmp.107 = 7;
+        invoke %tmp.102 %tmp.103(%tmp.104, %tmp.105, %tmp.106, %tmp.107);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 100 8 ]
+        %tmp.108 = lgetv %dc;
+        symbol [ dc %tmp.108 100 8 10 ];
+        symbol [ fillRectangle %tmp.109 100 11 24 ];
+        %tmp.109 = getv function %tmp.108 :fillRectangle;
+        %tmp.110 = 93;
+        %tmp.111 = 20;
+        %tmp.112 = 2;
+        %tmp.113 = 3;
+        invoke %tmp.108 %tmp.109(%tmp.110, %tmp.111, %tmp.112, %tmp.113);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 101 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %batteryWidth.12 = local;
+        symbol [ batteryWidth %batteryWidth.12 101 12 24 ];
+        %tmp.114 = 9;
+        %tmp.115 = lgetv %battery.11;
+        symbol [ battery %tmp.115 101 32 39 ];
+        %tmp.116 = mul %tmp.114 %tmp.115;
+        %tmp.117 = 100.0;
+        %tmp.118 = div %tmp.116 %tmp.117;
+        symbol [ toNumber %tmp.119 101 49 57 ];
+        %tmp.119 = getv function %tmp.118 :toNumber;
+        %tmp.120 = invoke %tmp.118 %tmp.119();
+        lputv %batteryWidth.12 %tmp.120;
+        symbol [ batteryWidth %batteryWidth.12 101 12 24 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 102 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_8_102_75_if_stmt:
+        %tmp.121 = lgetv %batteryWidth.12;
+        symbol [ batteryWidth %tmp.121 102 12 24 ];
+        %tmp.122 = 0;
+        %tmp.123 = gt %tmp.121 %tmp.122;
+        bf %tmp.123 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_8_102_75_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_8_102_75_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_30_102_75_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 102 32 ]
+        %tmp.124 = lgetv %dc;
+        symbol [ dc %tmp.124 102 32 34 ];
+        symbol [ fillRectangle %tmp.125 102 35 48 ];
+        %tmp.125 = getv function %tmp.124 :fillRectangle;
+        %tmp.126 = 82;
+        %tmp.127 = 20;
+        %tmp.128 = lgetv %batteryWidth.12;
+        symbol [ batteryWidth %tmp.128 102 57 69 ];
+        %tmp.129 = 3;
+        invoke %tmp.124 %tmp.125(%tmp.126, %tmp.127, %tmp.128, %tmp.129);
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_30_102_75_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_8_102_75_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_102_8_102_75_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 103 8 ]
+        %tmp.130 = self;
+        symbol [ drawText %tmp.131 103 8 16 ];
+        %tmp.131 = getv function %tmp.130 :drawText;
+        %tmp.132 = lgetv %dc;
+        symbol [ dc %tmp.132 103 17 19 ];
+        %tmp.133 = 100;
+        %tmp.134 = 15;
+        %tmp.135 = lgetv %battery.11;
+        symbol [ battery %tmp.135 103 30 37 ];
+        symbol [ format %tmp.136 103 38 44 ];
+        %tmp.136 = getv function %tmp.135 :format;
+        %tmp.137 = "%d";
+        %tmp.138 = invoke %tmp.135 %tmp.136(%tmp.137);
+        %tmp.139 = "%";
+        %tmp.140 = add %tmp.138 %tmp.139;
+        symbol [ _smallFont %tmp.142 103 58 68 ];
+        %tmp.142 = getv ? :_smallFont;
+        invoke %tmp.130 %tmp.131(%tmp.132, %tmp.133, %tmp.134, %tmp.140, %tmp.142);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 105 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %dateText.13 = local;
+        symbol [ dateText %dateText.13 105 12 20 ];
+        %tmp.143 = lgetv %days.4;
+        symbol [ days %tmp.143 105 23 27 ];
+        %tmp.144 = lgetv %date.3;
+        symbol [ date %tmp.144 105 28 32 ];
+        symbol [ day_of_week %tmp.145 105 33 44 ];
+        %tmp.145 = getv %tmp.144 :day_of_week;
+        %tmp.146 = 1;
+        %tmp.147 = sub %tmp.145 %tmp.146;
+        %tmp.148 = agetv %tmp.143 %tmp.147;
+        %tmp.149 = " ";
+        %tmp.150 = add %tmp.148 %tmp.149;
+        %tmp.151 = lgetv %date.3;
+        symbol [ date %tmp.151 105 58 62 ];
+        symbol [ day %tmp.152 105 63 66 ];
+        %tmp.152 = getv %tmp.151 :day;
+        symbol [ format %tmp.153 105 67 73 ];
+        %tmp.153 = getv function %tmp.152 :format;
+        %tmp.154 = "%02d";
+        %tmp.155 = invoke %tmp.152 %tmp.153(%tmp.154);
+        %tmp.156 = add %tmp.150 %tmp.155;
+        %tmp.157 = ".";
+        %tmp.158 = add %tmp.156 %tmp.157;
+        %tmp.159 = lgetv %date.3;
+        symbol [ date %tmp.159 106 20 24 ];
+        symbol [ month %tmp.160 106 25 30 ];
+        %tmp.160 = getv %tmp.159 :month;
+        symbol [ format %tmp.161 106 31 37 ];
+        %tmp.161 = getv function %tmp.160 :format;
+        %tmp.162 = "%02d";
+        %tmp.163 = invoke %tmp.160 %tmp.161(%tmp.162);
+        %tmp.164 = add %tmp.158 %tmp.163;
+        lputv %dateText.13 %tmp.164;
+        symbol [ dateText %dateText.13 105 12 20 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 107 8 ]
+        %tmp.165 = self;
+        symbol [ drawText %tmp.166 107 8 16 ];
+        %tmp.166 = getv function %tmp.165 :drawText;
+        %tmp.167 = lgetv %dc;
+        symbol [ dc %tmp.167 107 17 19 ];
+        %tmp.168 = 30;
+        %tmp.169 = 33;
+        %tmp.170 = lgetv %dateText.13;
+        symbol [ dateText %tmp.170 107 29 37 ];
+        symbol [ _smallFont %tmp.172 107 39 49 ];
+        %tmp.172 = getv ? :_smallFont;
+        invoke %tmp.165 %tmp.166(%tmp.167, %tmp.168, %tmp.169, %tmp.170, %tmp.172);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 108 8 ]
+        %tmp.173 = self;
+        symbol [ drawText %tmp.174 108 8 16 ];
+        %tmp.174 = getv function %tmp.173 :drawText;
+        %tmp.175 = lgetv %dc;
+        symbol [ dc %tmp.175 108 17 19 ];
+        %tmp.176 = 17;
+        %tmp.177 = 49;
+        %tmp.178 = lgetv %hour.5;
+        symbol [ hour %tmp.178 108 29 33 ];
+        symbol [ format %tmp.179 108 34 40 ];
+        %tmp.179 = getv function %tmp.178 :format;
+        %tmp.180 = "%02d";
+        %tmp.181 = invoke %tmp.178 %tmp.179(%tmp.180);
+        %tmp.182 = ":";
+        %tmp.183 = add %tmp.181 %tmp.182;
+        %tmp.184 = lgetv %clock.2;
+        symbol [ clock %tmp.184 108 57 62 ];
+        symbol [ min %tmp.185 108 63 66 ];
+        %tmp.185 = getv %tmp.184 :min;
+        symbol [ format %tmp.186 108 67 73 ];
+        %tmp.186 = getv function %tmp.185 :format;
+        %tmp.187 = "%02d";
+        %tmp.188 = invoke %tmp.185 %tmp.186(%tmp.187);
+        %tmp.189 = add %tmp.183 %tmp.188;
+        symbol [ _timeFont %tmp.191 108 83 92 ];
+        %tmp.191 = getv ? :_timeFont;
+        invoke %tmp.173 %tmp.174(%tmp.175, %tmp.176, %tmp.177, %tmp.189, %tmp.191);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 109 8 ]
+        %tmp.192 = self;
+        symbol [ drawText %tmp.193 109 8 16 ];
+        %tmp.193 = getv function %tmp.192 :drawText;
+        %tmp.194 = lgetv %dc;
+        symbol [ dc %tmp.194 109 17 19 ];
+        %tmp.195 = 149;
+        %tmp.196 = 82;
+        %tmp.197 = "SATISFY";
+        symbol [ _nameFont %tmp.199 109 41 50 ];
+        %tmp.199 = getv ? :_nameFont;
+        invoke %tmp.192 %tmp.193(%tmp.194, %tmp.195, %tmp.196, %tmp.197, %tmp.199);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 111 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %distanceText.14 = local;
+        symbol [ distanceText %distanceText.14 111 12 24 ];
+        %tmp.200 = "-- KM";
+        lputv %distanceText.14 %tmp.200;
+        symbol [ distanceText %distanceText.14 111 12 24 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 112 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_8_115_8_if_stmt:
+        symbol [ _distance %tmp.202 112 12 21 ];
+        %tmp.202 = getv ? :_distance;
+        %tmp.203 = null;
+        %tmp.204 = ne %tmp.202 %tmp.203;
+        bf %tmp.204 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_8_115_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_8_115_8_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_31_115_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 114 12 ]
+        symbol [ _distance %tmp.206 114 28 37 ];
+        %tmp.206 = getv ? :_distance;
+        %tmp.207 = as %tmp.206 { (!Null) };
+        %tmp.208 = 100000.0;
+        %tmp.209 = div %tmp.207 %tmp.208;
+        symbol [ format %tmp.210 114 50 56 ];
+        %tmp.210 = getv function %tmp.209 :format;
+        %tmp.211 = "%.1f";
+        %tmp.212 = invoke %tmp.209 %tmp.210(%tmp.211);
+        %tmp.213 = " KM";
+        %tmp.214 = add %tmp.212 %tmp.213;
+        lputv %distanceText.14 %tmp.214;
+        symbol [ distanceText %distanceText.14 114 12 24 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_31_115_8_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_8_115_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_112_8_115_8_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 116 8 ]
+        %tmp.215 = self;
+        symbol [ drawRow %tmp.216 116 8 15 ];
+        %tmp.216 = getv function %tmp.215 :drawRow;
+        %tmp.217 = lgetv %dc;
+        symbol [ dc %tmp.217 116 16 18 ];
+        %tmp.218 = 97;
+        %tmp.219 = "DIST";
+        %tmp.220 = lgetv %distanceText.14;
+        symbol [ distanceText %tmp.220 116 32 44 ];
+        invoke %tmp.215 %tmp.216(%tmp.217, %tmp.218, %tmp.219, %tmp.220);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 117 8 ]
+        %tmp.221 = self;
+        symbol [ drawRow %tmp.222 117 8 15 ];
+        %tmp.222 = getv function %tmp.221 :drawRow;
+        %tmp.223 = lgetv %dc;
+        symbol [ dc %tmp.223 117 16 18 ];
+        %tmp.224 = 110;
+        %tmp.225 = "STEPS";
+        %tmp.226 = self;
+        symbol [ numberText %tmp.227 117 34 44 ];
+        %tmp.227 = getv function %tmp.226 :numberText;
+        symbol [ _steps %tmp.229 117 45 51 ];
+        %tmp.229 = getv ? :_steps;
+        %tmp.230 = invoke %tmp.226 %tmp.227(%tmp.229);
+        invoke %tmp.221 %tmp.222(%tmp.223, %tmp.224, %tmp.225, %tmp.230);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 118 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %hrLabel.15 = local;
+        symbol [ hrLabel %hrLabel.15 118 12 19 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_begin:
+        symbol [ _hrReader %tmp.232 118 22 31 ];
+        %tmp.232 = getv ? :_hrReader;
+        symbol [ isHistory %tmp.233 118 32 41 ];
+        %tmp.233 = getv %tmp.232 :isHistory;
+        bf %tmp.233 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_else_false;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_true:
+        %tmp.234 = "LAST HR";
+        push %tmp.234;
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_else_false:
+        %tmp.235 = "HEART RATE";
+        push %tmp.235;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_end:
+        %tmp.236 = phi [%tmp.233 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_begin] [%tmp.234 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_true] [%tmp.235 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_else_false] [%tmp.236 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_118_22_118_56_end];
+        lputv %hrLabel.15 %tmp.236;
+        symbol [ hrLabel %hrLabel.15 118 12 19 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 119 8 ]
+        %tmp.237 = self;
+        symbol [ drawRow %tmp.238 119 8 15 ];
+        %tmp.238 = getv function %tmp.237 :drawRow;
+        %tmp.239 = lgetv %dc;
+        symbol [ dc %tmp.239 119 16 18 ];
+        %tmp.240 = 123;
+        %tmp.241 = lgetv %hrLabel.15;
+        symbol [ hrLabel %tmp.241 119 25 32 ];
+        %tmp.242 = self;
+        symbol [ numberText %tmp.243 119 34 44 ];
+        %tmp.243 = getv function %tmp.242 :numberText;
+        symbol [ _heartRate %tmp.245 119 45 55 ];
+        %tmp.245 = getv ? :_heartRate;
+        %tmp.246 = invoke %tmp.242 %tmp.243(%tmp.245);
+        %tmp.247 = " BPM";
+        %tmp.248 = add %tmp.246 %tmp.247;
+        invoke %tmp.237 %tmp.238(%tmp.239, %tmp.240, %tmp.241, %tmp.248);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 121 8 ]
+        %tmp.249 = self;
+        symbol [ drawRow %tmp.250 121 8 15 ];
+        %tmp.250 = getv function %tmp.249 :drawRow;
+        %tmp.251 = lgetv %dc;
+        symbol [ dc %tmp.251 121 16 18 ];
+        %tmp.252 = 136;
+        %tmp.253 = "RECOVERY";
+        %tmp.254 = "-- H";
+        invoke %tmp.249 %tmp.250(%tmp.251, %tmp.252, %tmp.253, %tmp.254);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 122 8 ]
+        %tmp.255 = self;
+        symbol [ drawRow %tmp.256 122 8 15 ];
+        %tmp.256 = getv function %tmp.255 :drawRow;
+        %tmp.257 = lgetv %dc;
+        symbol [ dc %tmp.257 122 16 18 ];
+        %tmp.258 = 149;
+        %tmp.259 = "KCAL";
+        %tmp.260 = self;
+        symbol [ numberText %tmp.261 122 33 43 ];
+        %tmp.261 = getv function %tmp.260 :numberText;
+        symbol [ _calories %tmp.263 122 44 53 ];
+        %tmp.263 = getv ? :_calories;
+        %tmp.264 = invoke %tmp.260 %tmp.261(%tmp.263);
+        invoke %tmp.255 %tmp.256(%tmp.257, %tmp.258, %tmp.259, %tmp.264);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 124 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop" ]
+        %progress.16 = local;
+        symbol [ progress %progress.16 124 12 20 ];
+        %tmp.265 = null;
+        lputv %progress.16 %tmp.265;
+        symbol [ progress %progress.16 124 12 20 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 125 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_stmt:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_12_125_55_begin:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_12_125_39_begin:
+        symbol [ _steps %tmp.267 125 12 18 ];
+        %tmp.267 = getv ? :_steps;
+        %tmp.268 = null;
+        %tmp.269 = ne %tmp.267 %tmp.268;
+        bf %tmp.269 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_30_125_39_true:
+        symbol [ _goal %tmp.271 125 30 35 ];
+        %tmp.271 = getv ? :_goal;
+        %tmp.272 = null;
+        %tmp.273 = ne %tmp.271 %tmp.272;
+        push %tmp.273;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_30_125_39_end:
+        %tmp.274 = phi [%tmp.269 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_12_125_39_begin] [%tmp.273 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_30_125_39_true] [%tmp.274 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_30_125_39_end];
+        bf %tmp.274 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_47_125_55_true:
+        symbol [ _goal %tmp.276 125 47 52 ];
+        %tmp.276 = getv ? :_goal;
+        %tmp.277 = as %tmp.276 { (!Null) };
+        %tmp.278 = 0;
+        %tmp.279 = gt %tmp.277 %tmp.278;
+        push %tmp.279;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_47_125_55_end:
+        %tmp.280 = phi [%tmp.274 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_12_125_55_begin] [%tmp.279 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_47_125_55_true] [%tmp.280 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_47_125_55_end];
+        bf %tmp.280 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_58_127_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 126 12 ]
+        symbol [ _steps %tmp.282 126 24 30 ];
+        %tmp.282 = getv ? :_steps;
+        %tmp.283 = as %tmp.282 { (!Null) };
+        %tmp.284 = 100.0;
+        %tmp.285 = mul %tmp.283 %tmp.284;
+        symbol [ _goal %tmp.287 126 41 46 ];
+        %tmp.287 = getv ? :_goal;
+        %tmp.288 = as %tmp.287 { (!Null) };
+        %tmp.289 = div %tmp.285 %tmp.288;
+        symbol [ toNumber %tmp.290 126 48 56 ];
+        %tmp.290 = getv function %tmp.289 :toNumber;
+        %tmp.291 = invoke %tmp.289 %tmp.290();
+        lputv %progress.16 %tmp.291;
+        symbol [ progress %progress.16 126 12 20 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_58_127_8_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_125_8_127_8_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 128 8 ]
+        %tmp.292 = self;
+        symbol [ drawWave %tmp.293 128 8 16 ];
+        %tmp.293 = getv function %tmp.292 :drawWave;
+        %tmp.294 = lgetv %dc;
+        symbol [ dc %tmp.294 128 17 19 ];
+        %tmp.295 = lgetv %progress.16;
+        symbol [ progress %tmp.295 128 21 29 ];
+        invoke %tmp.292 %tmp.293(%tmp.294, %tmp.295);
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_72_26_129_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 131; @symbol_functiondef = [drawRow,131,13,20]; @symbol_param<0> = [dc,131,21,23]; @symbol_param<1> = [y,131,25,26]; @symbol_param<2> = [label,131,28,33]; @symbol_param<3> = [value,131,35,40]; ]
+    function drawRow(dc, y, label, value) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_131_42_138_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 132 8 ]
+        %tmp.1 = self;
+        symbol [ drawText %tmp.2 132 8 16 ];
+        %tmp.2 = getv function %tmp.1 :drawText;
+        %tmp.3 = lgetv %dc;
+        symbol [ dc %tmp.3 132 17 19 ];
+        %tmp.4 = 24;
+        %tmp.5 = lgetv %y;
+        symbol [ y %tmp.5 132 25 26 ];
+        %tmp.6 = lgetv %label;
+        symbol [ label %tmp.6 132 28 33 ];
+        symbol [ _smallFont %tmp.8 132 35 45 ];
+        %tmp.8 = getv ? :_smallFont;
+        invoke %tmp.1 %tmp.2(%tmp.3, %tmp.4, %tmp.5, %tmp.6, %tmp.8);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 134 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_131_42_138_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_131_42_138_4_stop" ]
+        %font.1 = local;
+        symbol [ font %font.1 134 12 16 ];
+        symbol [ _smallFont %tmp.10 134 19 29 ];
+        %tmp.10 = getv ? :_smallFont;
+        lputv %font.1 %tmp.10;
+        symbol [ font %font.1 134 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 135 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_131_42_138_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_131_42_138_4_stop" ]
+        %x.2 = local;
+        symbol [ x %x.2 135 12 13 ];
+        %tmp.11 = 149;
+        lputv %x.2 %tmp.11;
+        symbol [ x %x.2 135 12 13 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 136 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_8_136_66_if_stmt:
+        %tmp.12 = lgetv %dc;
+        symbol [ dc %tmp.12 136 12 14 ];
+        symbol [ getTextWidthInPixels %tmp.13 136 15 35 ];
+        %tmp.13 = getv function %tmp.12 :getTextWidthInPixels;
+        %tmp.14 = lgetv %value;
+        symbol [ value %tmp.14 136 36 41 ];
+        %tmp.15 = lgetv %font.1;
+        symbol [ font %tmp.15 136 43 47 ];
+        %tmp.16 = invoke %tmp.12 %tmp.13(%tmp.14, %tmp.15);
+        %tmp.17 = 49;
+        %tmp.18 = gt %tmp.16 %tmp.17;
+        bf %tmp.18 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_8_136_66_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_8_136_66_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_55_136_66_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 136 57 ]
+        %tmp.19 = 140;
+        lputv %x.2 %tmp.19;
+        symbol [ x %x.2 136 57 58 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_55_136_66_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_8_136_66_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_136_8_136_66_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 137 8 ]
+        %tmp.20 = self;
+        symbol [ drawText %tmp.21 137 8 16 ];
+        %tmp.21 = getv function %tmp.20 :drawText;
+        %tmp.22 = lgetv %dc;
+        symbol [ dc %tmp.22 137 17 19 ];
+        %tmp.23 = lgetv %x.2;
+        symbol [ x %tmp.23 137 21 22 ];
+        %tmp.24 = lgetv %y;
+        symbol [ y %tmp.24 137 24 25 ];
+        %tmp.25 = lgetv %value;
+        symbol [ value %tmp.25 137 27 32 ];
+        %tmp.26 = lgetv %font.1;
+        symbol [ font %tmp.26 137 34 38 ];
+        invoke %tmp.20 %tmp.21(%tmp.22, %tmp.23, %tmp.24, %tmp.25, %tmp.26);
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_131_42_138_4_stop:
+    }
+    [ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 140; @symbol_functiondef = [drawWave,140,13,21]; @symbol_param<0> = [dc,140,22,24]; @symbol_param<1> = [progress,140,26,34]; ]
+    function drawWave(dc, progress) {
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 141 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop" ]
+        %capped.1 = local;
+        symbol [ capped %capped.1 141 12 18 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_begin:
+        %tmp.1 = lgetv %progress;
+        symbol [ progress %tmp.1 141 21 29 ];
+        %tmp.2 = null;
+        %tmp.3 = eq %tmp.1 %tmp.2;
+        bf %tmp.3 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_else_false;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_true:
+        %tmp.4 = 0;
+        push %tmp.4;
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_else_false:
+        %tmp.5 = lgetv %progress;
+        symbol [ progress %tmp.5 141 44 52 ];
+        %tmp.6 = as %tmp.5 { (!Null) };
+        push %tmp.6;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_end:
+        %tmp.7 = phi [%tmp.3 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_begin] [%tmp.4 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_true] [%tmp.6 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_else_false] [%tmp.7 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_141_21_141_44_end];
+        lputv %capped.1 %tmp.7;
+        symbol [ capped %capped.1 141 12 18 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 142 8 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_8_142_42_if_stmt:
+        %tmp.8 = lgetv %capped.1;
+        symbol [ capped %tmp.8 142 12 18 ];
+        %tmp.9 = 100;
+        %tmp.10 = gt %tmp.8 %tmp.9;
+        bf %tmp.10 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_8_142_42_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_8_142_42_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_26_142_42_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 142 28 ]
+        %tmp.11 = 100;
+        lputv %capped.1 %tmp.11;
+        symbol [ capped %capped.1 142 28 34 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_26_142_42_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_8_142_42_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_142_8_142_42_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 143 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop" ]
+        %lastX.2 = local;
+        symbol [ lastX %lastX.2 143 12 17 ];
+        %tmp.12 = 24;
+        lputv %lastX.2 %tmp.12;
+        symbol [ lastX %lastX.2 143 12 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 144 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop" ]
+        %lastY.3 = local;
+        symbol [ lastY %lastY.3 144 12 17 ];
+        %tmp.13 = 178;
+        lputv %lastY.3 %tmp.13;
+        symbol [ lastY %lastY.3 144 12 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 145 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop" ]
+        %cutoff.4 = local;
+        symbol [ cutoff %cutoff.4 145 12 18 ];
+        %tmp.14 = 24;
+        %tmp.15 = 160;
+        %tmp.16 = lgetv %capped.1;
+        symbol [ capped %tmp.16 145 33 39 ];
+        %tmp.17 = mul %tmp.15 %tmp.16;
+        %tmp.18 = 100.0;
+        %tmp.19 = div %tmp.17 %tmp.18;
+        symbol [ toNumber %tmp.20 145 49 57 ];
+        %tmp.20 = getv function %tmp.19 :toNumber;
+        %tmp.21 = invoke %tmp.19 %tmp.20();
+        %tmp.22 = add %tmp.14 %tmp.21;
+        lputv %cutoff.4 %tmp.22;
+        symbol [ cutoff %cutoff.4 145 12 18 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 146 8 ]
+        for @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_test @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_incr @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_init:
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_begin" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_end" ]
+        %x.5 = local;
+        symbol [ x %x.5 146 17 18 ];
+        %tmp.23 = 24;
+        lputv %x.5 %tmp.23;
+        symbol [ x %x.5 146 17 18 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_test:
+        %tmp.24 = lgetv %x.5;
+        symbol [ x %tmp.24 146 25 26 ];
+        %tmp.25 = 184;
+        %tmp.26 = lte %tmp.24 %tmp.25;
+        bf %tmp.26 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_begin:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_43_162_8_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 147 12 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_43_162_8_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_43_162_8_stop" ]
+        %phase.6 = local;
+        symbol [ phase %phase.6 147 16 21 ];
+        %tmp.27 = lgetv %x.5;
+        symbol [ x %tmp.27 147 25 26 ];
+        %tmp.28 = 24;
+        %tmp.29 = sub %tmp.27 %tmp.28;
+        symbol [ Math %tmp.30 147 35 39 ];
+        %tmp.30 = getm $.Toybox.Math;
+        symbol [ PI %tmp.31 147 40 42 ];
+        %tmp.31 = getv %tmp.30 :PI;
+        %tmp.32 = mul %tmp.29 %tmp.31;
+        %tmp.33 = 160.0;
+        %tmp.34 = div %tmp.32 %tmp.33;
+        lputv %phase.6 %tmp.34;
+        symbol [ phase %phase.6 147 16 21 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 148 12 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_43_162_8_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_43_162_8_stop" ]
+        %y.7 = local;
+        symbol [ y %y.7 148 16 17 ];
+        %tmp.35 = 178;
+        %tmp.36 = 15;
+        symbol [ Math %tmp.37 148 32 36 ];
+        %tmp.37 = getm $.Toybox.Math;
+        symbol [ sin %tmp.38 148 37 40 ];
+        %tmp.38 = getv function %tmp.37 :sin;
+        %tmp.39 = lgetv %phase.6;
+        symbol [ phase %tmp.39 148 41 46 ];
+        %tmp.40 = invoke %tmp.37 %tmp.38(%tmp.39);
+        %tmp.41 = mul %tmp.36 %tmp.40;
+        symbol [ Math %tmp.42 148 50 54 ];
+        %tmp.42 = getm $.Toybox.Math;
+        symbol [ sin %tmp.43 148 55 58 ];
+        %tmp.43 = getv function %tmp.42 :sin;
+        %tmp.44 = lgetv %phase.6;
+        symbol [ phase %tmp.44 148 59 64 ];
+        %tmp.45 = invoke %tmp.42 %tmp.43(%tmp.44);
+        %tmp.46 = mul %tmp.41 %tmp.45;
+        %tmp.47 = sub %tmp.35 %tmp.46;
+        symbol [ toNumber %tmp.48 148 67 75 ];
+        %tmp.48 = getv function %tmp.47 :toNumber;
+        %tmp.49 = invoke %tmp.47 %tmp.48();
+        lputv %y.7 %tmp.49;
+        symbol [ y %y.7 148 16 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 149 12 ]
+        %tmp.50 = lgetv %dc;
+        symbol [ dc %tmp.50 149 12 14 ];
+        symbol [ drawLine %tmp.51 149 15 23 ];
+        %tmp.51 = getv function %tmp.50 :drawLine;
+        %tmp.52 = lgetv %lastX.2;
+        symbol [ lastX %tmp.52 149 24 29 ];
+        %tmp.53 = lgetv %lastY.3;
+        symbol [ lastY %tmp.53 149 31 36 ];
+        %tmp.54 = lgetv %x.5;
+        symbol [ x %tmp.54 149 38 39 ];
+        %tmp.55 = lgetv %y.7;
+        symbol [ y %tmp.55 149 41 42 ];
+        invoke %tmp.50 %tmp.51(%tmp.52, %tmp.53, %tmp.54, %tmp.55);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 151 12 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_12_159_12_if_stmt:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_16_151_35_begin:
+        %tmp.56 = lgetv %x.5;
+        symbol [ x %tmp.56 151 16 17 ];
+        %tmp.57 = 3;
+        %tmp.58 = mod %tmp.56 %tmp.57;
+        %tmp.59 = 0;
+        %tmp.60 = eq %tmp.58 %tmp.59;
+        bf %tmp.60 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_12_159_12_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_30_151_35_true:
+        %tmp.61 = lgetv %x.5;
+        symbol [ x %tmp.61 151 30 31 ];
+        %tmp.62 = lgetv %cutoff.4;
+        symbol [ cutoff %tmp.62 151 35 41 ];
+        %tmp.63 = lte %tmp.61 %tmp.62;
+        push %tmp.63;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_30_151_35_end:
+        %tmp.64 = phi [%tmp.60 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_16_151_35_begin] [%tmp.63 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_30_151_35_true] [%tmp.64 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_30_151_35_end];
+        bf %tmp.64 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_12_159_12_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_12_159_12_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_43_159_12_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 152 16 ]
+        for @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_test @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_incr @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_init:
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_begin" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_end" ]
+        %dotY.8 = local;
+        symbol [ dotY %dotY.8 152 25 29 ];
+        %tmp.65 = lgetv %y.7;
+        symbol [ y %tmp.65 152 32 33 ];
+        %tmp.66 = 4;
+        %tmp.67 = add %tmp.65 %tmp.66;
+        lputv %dotY.8 %tmp.67;
+        symbol [ dotY %dotY.8 152 25 29 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_test:
+        %tmp.68 = lgetv %dotY.8;
+        symbol [ dotY %tmp.68 152 39 43 ];
+        %tmp.69 = 206;
+        %tmp.70 = lt %tmp.68 %tmp.69;
+        bf %tmp.70 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_begin:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_62_158_16_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 153 20 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_62_158_16_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_62_158_16_stop" ]
+        %dx.9 = local;
+        symbol [ dx %dx.9 153 24 26 ];
+        %tmp.71 = lgetv %x.5;
+        symbol [ x %tmp.71 153 29 30 ];
+        %tmp.72 = 104;
+        %tmp.73 = sub %tmp.71 %tmp.72;
+        lputv %dx.9 %tmp.73;
+        symbol [ dx %dx.9 153 24 26 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 154 20 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_62_158_16_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_62_158_16_stop" ]
+        %dy.10 = local;
+        symbol [ dy %dy.10 154 24 26 ];
+        %tmp.74 = lgetv %dotY.8;
+        symbol [ dotY %tmp.74 154 29 33 ];
+        %tmp.75 = 104;
+        %tmp.76 = sub %tmp.74 %tmp.75;
+        lputv %dy.10 %tmp.76;
+        symbol [ dy %dy.10 154 24 26 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 155 20 ]
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_20_157_20_if_stmt:
+        %tmp.77 = lgetv %dx.9;
+        symbol [ dx %tmp.77 155 24 26 ];
+        %tmp.78 = lgetv %dx.9;
+        symbol [ dx %tmp.78 155 29 31 ];
+        %tmp.79 = mul %tmp.77 %tmp.78;
+        %tmp.80 = lgetv %dy.10;
+        symbol [ dy %tmp.80 155 34 36 ];
+        %tmp.81 = lgetv %dy.10;
+        symbol [ dy %tmp.81 155 39 41 ];
+        %tmp.82 = mul %tmp.80 %tmp.81;
+        %tmp.83 = add %tmp.79 %tmp.82;
+        %tmp.84 = 102;
+        %tmp.85 = 102;
+        %tmp.86 = mul %tmp.84 %tmp.85;
+        %tmp.87 = lt %tmp.83 %tmp.86;
+        bf %tmp.87 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_20_157_20_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_20_157_20_if_true:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_55_157_20_start:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 156 24 ]
+        %tmp.88 = lgetv %dc;
+        symbol [ dc %tmp.88 156 24 26 ];
+        symbol [ drawPoint %tmp.89 156 27 36 ];
+        %tmp.89 = getv function %tmp.88 :drawPoint;
+        %tmp.90 = lgetv %x.5;
+        symbol [ x %tmp.90 156 37 38 ];
+        %tmp.91 = lgetv %dotY.8;
+        symbol [ dotY %tmp.91 156 40 44 ];
+        invoke %tmp.88 %tmp.89(%tmp.90, %tmp.91);
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_55_157_20_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_20_157_20_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_155_20_157_20_if_end:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_62_158_16_stop:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_incr:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 152 ]
+        %tmp.92 = lgetv %dotY.8;
+        symbol [ dotY %tmp.92 152 51 55 ];
+        %tmp.93 = 3;
+        %tmp.94 = add %tmp.92 %tmp.93;
+        lputv %dotY.8 %tmp.94;
+        symbol [ dotY %dotY.8 152 51 55 ];
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_test;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_152_16_158_16_for_end:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_43_159_12_stop:
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_12_159_12_if_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_151_12_159_12_if_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 160 12 ]
+        %tmp.95 = lgetv %x.5;
+        symbol [ x %tmp.95 160 20 21 ];
+        lputv %lastX.2 %tmp.95;
+        symbol [ lastX %lastX.2 160 12 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 161 12 ]
+        %tmp.96 = lgetv %y.7;
+        symbol [ y %tmp.96 161 20 21 ];
+        lputv %lastY.3 %tmp.96;
+        symbol [ lastY %lastY.3 161 12 17 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_43_162_8_stop:
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_incr:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 146 ]
+        %tmp.97 = lgetv %x.5;
+        symbol [ x %tmp.97 146 35 36 ];
+        %tmp.98 = 1;
+        %tmp.99 = add %tmp.97 %tmp.98;
+        lputv %x.5 %tmp.99;
+        symbol [ x %x.5 146 35 36 ];
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_test;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_146_8_162_8_for_end:
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 163 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop" ]
+        %text.11 = local;
+        symbol [ text %text.11 163 12 16 ];
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_begin:
+        %tmp.100 = lgetv %progress;
+        symbol [ progress %tmp.100 163 19 27 ];
+        %tmp.101 = null;
+        %tmp.102 = eq %tmp.100 %tmp.101;
+        bf %tmp.102 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_else_false;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_true:
+        %tmp.103 = "--% GOAL";
+        push %tmp.103;
+        goto @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_end;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_else_false:
+        %tmp.104 = lgetv %progress;
+        symbol [ progress %tmp.104 163 51 59 ];
+        %tmp.105 = as %tmp.104 { (!Null) };
+        symbol [ format %tmp.106 163 60 66 ];
+        %tmp.106 = getv function %tmp.105 :format;
+        %tmp.107 = "%d";
+        %tmp.108 = invoke %tmp.105 %tmp.106(%tmp.107);
+        %tmp.109 = "% GOAL";
+        %tmp.110 = add %tmp.108 %tmp.109;
+        push %tmp.110;
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_end:
+        %tmp.111 = phi [%tmp.102 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_begin] [%tmp.103 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_true] [%tmp.110 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_else_false] [%tmp.111 @D__laragon_www_satisfy_fr45_source_SatisfyView_mc_163_19_163_75_end];
+        lputv %text.11 %tmp.111;
+        symbol [ text %text.11 163 12 16 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 164 8 ]
+        [ "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_start" "D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop" ]
+        %width.12 = local;
+        symbol [ width %width.12 164 12 17 ];
+        %tmp.112 = lgetv %dc;
+        symbol [ dc %tmp.112 164 20 22 ];
+        symbol [ getTextWidthInPixels %tmp.113 164 23 43 ];
+        %tmp.113 = getv function %tmp.112 :getTextWidthInPixels;
+        %tmp.114 = lgetv %text.11;
+        symbol [ text %tmp.114 164 44 48 ];
+        symbol [ _smallFont %tmp.116 164 50 60 ];
+        %tmp.116 = getv ? :_smallFont;
+        %tmp.117 = invoke %tmp.112 %tmp.113(%tmp.114, %tmp.116);
+        lputv %width.12 %tmp.117;
+        symbol [ width %width.12 164 12 17 ];
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 165 8 ]
+        %tmp.118 = lgetv %dc;
+        symbol [ dc %tmp.118 165 8 10 ];
+        symbol [ setColor %tmp.119 165 11 19 ];
+        %tmp.119 = getv function %tmp.118 :setColor;
+        symbol [ Graphics %tmp.120 165 20 28 ];
+        %tmp.120 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.121 165 29 40 ];
+        %tmp.121 = getv %tmp.120 :COLOR_WHITE;
+        symbol [ Graphics %tmp.122 165 42 50 ];
+        %tmp.122 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.123 165 51 62 ];
+        %tmp.123 = getv %tmp.122 :COLOR_WHITE;
+        invoke %tmp.118 %tmp.119(%tmp.121, %tmp.123);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 166 8 ]
+        %tmp.124 = lgetv %dc;
+        symbol [ dc %tmp.124 166 8 10 ];
+        symbol [ fillRectangle %tmp.125 166 11 24 ];
+        %tmp.125 = getv function %tmp.124 :fillRectangle;
+        %tmp.126 = 104;
+        %tmp.127 = lgetv %width.12;
+        symbol [ width %tmp.127 166 31 36 ];
+        %tmp.128 = 2;
+        %tmp.129 = div %tmp.127 %tmp.128;
+        %tmp.130 = sub %tmp.126 %tmp.129;
+        %tmp.131 = 3;
+        %tmp.132 = sub %tmp.130 %tmp.131;
+        %tmp.133 = 183;
+        %tmp.134 = lgetv %width.12;
+        symbol [ width %tmp.134 166 51 56 ];
+        %tmp.135 = 6;
+        %tmp.136 = add %tmp.134 %tmp.135;
+        %tmp.137 = 14;
+        invoke %tmp.124 %tmp.125(%tmp.132, %tmp.133, %tmp.136, %tmp.137);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 167 8 ]
+        %tmp.138 = lgetv %dc;
+        symbol [ dc %tmp.138 167 8 10 ];
+        symbol [ setColor %tmp.139 167 11 19 ];
+        %tmp.139 = getv function %tmp.138 :setColor;
+        symbol [ Graphics %tmp.140 167 20 28 ];
+        %tmp.140 = getm $.Toybox.Graphics;
+        symbol [ COLOR_BLACK %tmp.141 167 29 40 ];
+        %tmp.141 = getv %tmp.140 :COLOR_BLACK;
+        symbol [ Graphics %tmp.142 167 42 50 ];
+        %tmp.142 = getm $.Toybox.Graphics;
+        symbol [ COLOR_WHITE %tmp.143 167 51 62 ];
+        %tmp.143 = getv %tmp.142 :COLOR_WHITE;
+        invoke %tmp.138 %tmp.139(%tmp.141, %tmp.143);
+[ "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc" 168 8 ]
+        %tmp.144 = lgetv %dc;
+        symbol [ dc %tmp.144 168 8 10 ];
+        symbol [ drawText %tmp.145 168 11 19 ];
+        %tmp.145 = getv function %tmp.144 :drawText;
+        %tmp.146 = 104;
+        %tmp.147 = 184;
+        symbol [ _smallFont %tmp.149 168 30 40 ];
+        %tmp.149 = getv ? :_smallFont;
+        %tmp.150 = lgetv %text.11;
+        symbol [ text %tmp.150 168 42 46 ];
+        symbol [ Graphics %tmp.151 168 48 56 ];
+        %tmp.151 = getm $.Toybox.Graphics;
+        symbol [ TEXT_JUSTIFY_CENTER %tmp.152 168 57 76 ];
+        %tmp.152 = getv %tmp.151 :TEXT_JUSTIFY_CENTER;
+        invoke %tmp.144 %tmp.145(%tmp.146, %tmp.147, %tmp.149, %tmp.150, %tmp.152);
+D__laragon_www_satisfy_fr45_source_SatisfyView_mc_140_36_169_4_stop:
+    }
+}
+[ @file = "D:\laragon\www\satisfy-fr45\source\SatisfyView.mc"; @line = 1; ]
+<init> {
+}

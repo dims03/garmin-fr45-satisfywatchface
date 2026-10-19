@@ -1,0 +1,17 @@
+{
+  "application": "SATISFY FR45",
+  "target": "fr45",
+  "device_api": "1.4.5",
+  "compiler": "Garmin Connect IQ 9.2.0",
+  "configuration": "release",
+  "sha256": "bae4f744aacb13e51752f7b9b337c5afed79b6135e2773f055fb9b7c0e813618",
+  "bytes": 12380,
+  "validation": {
+    "compiler": "BUILD SUCCESSFUL; no warnings",
+    "simulator": "Debug build ran on the official FR45 simulator; clock updated and layout inspected.",
+    "observed_debug_memory_kib": 8.8,
+    "device_memory_limit_kib": 48,
+    "physical_watch_tested": false,
+    "all_sensor_edge_cases_tested": false
+  }
+}

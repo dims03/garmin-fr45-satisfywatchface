@@ -1,0 +1,7 @@
+.tools/
+.private/
+bin/
+*.prg.debug.xml
+*.prg.mir
+gen/
+__pycache__/

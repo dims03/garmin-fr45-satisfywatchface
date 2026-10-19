@@ -1,0 +1,5 @@
+<fonts>
+    <font id="TimeFont" filename="time.fnt"/>
+    <font id="SmallFont" filename="small.fnt"/>
+    <font id="NameFont" filename="name.fnt"/>
+</fonts>
